@@ -76,9 +76,110 @@ def extraNumber(a, b, c):
         return b
     return a
 
+# Given integers a and b, determine whether the 
+# following pseudocode results in an infinite loop
+
+# while a is not equal to b do
+#   increase a by 1
+#   decrease b by 1
+# Assume that the program is executed on a virtual machine 
+# which can store arbitrary long numbers and execute forever.
+
+# Example
+
+# For a = 2 and b = 6, the output should be
+# isInfiniteProcess(a, b) = false;
+# For a = 2 and b = 3, the output should be
+# isInfiniteProcess(a, b) = true.
+
+def isInfiniteProcess(a, b):
+    if a == b:
+        return False
+    if a < b:
+        while a <= b:
+            if a == b:
+                return False
+            else:
+                a += 1
+                b -= 1
+                   
+                    
+    return True
+
+# Consider an arithmetic expression of the form a#b=c. 
+# Check whether it is possible to replace # with one of 
+# the four signs: +, -, * or / to obtain a correct expression.
+
+# Example
+
+# For a = 2, b = 3 and c = 5, the output should be
+# arithmeticExpression(a, b, c) = true.
+
+# We can replace # with a + to obtain 2 + 3 = 5, so the answer is true.
+
+# For a = 8, b = 2 and c = 4, the output should be
+# arithmeticExpression(a, b, c) = true.
+
+# We can replace # with a / to obtain 8 / 2 = 4, so the answer is true.
+
+# For a = 8, b = 3 and c = 2, the output should be
+# arithmeticExpression(a, b, c) = false.
+
+# 8 + 3 = 11 ≠ 2;
+# 8 - 3 = 5 ≠ 2;
+# 8 * 3 = 24 ≠ 2;
+# 8 / 3 = 2.(6) ≠ 2.
+# So the answer is false.
+
+def arithmeticExpression(a, b, c):
+    if (a + b == c):
+        return True
+    if (a - b == c):
+        return True
+    if (a / b == c):
+        return True
+    if (a * b == c):
+        return True
+    return False
+
+# In tennis, a set is finished when one of the players wins 6 games 
+# and the other one wins less than 5, or, if both players win at 
+# least 5 games, until one of the players wins 7 games.
+
+# Determine if it is possible for a tennis set to be finished with 
+# the score score1 : score2.
+
+# Example
+
+# For score1 = 3 and score2 = 6, the output should be
+# tennisSet(score1, score2) = true.
+
+# For score1 = 8 and score2 = 5, the output should be
+# tennisSet(score1, score2) = false.
+
+# Since both players won at least 5 games, the set would've ended once one of them won the 7th one.
+
+# For score1 = 6 and score2 = 5, the output should be
+# tennisSet(score1, score2) = false.
+
+def tennisSet(score1, score2):
+    winning_number = 6
+    if score1 >= 5 and score2 >= 5:
+        if score1 == score2:
+            return False
+        else:
+            winning_number = 7
+    if score1 == winning_number or score2 == winning_number:
+        return True
+    else:
+        return False
+   
+
 def main():
     # print(reachNextLevel(10,15,4))
-    print(knapsackLight(10,5,6,4,9))
+    #  print(knapsackLight(10,5,6,4,9))
+    # print(isInfiniteProcess(2,3))
+    print(tennisSet(5,8))
 
 if __name__ == '__main__':
     main()
