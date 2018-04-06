@@ -201,7 +201,7 @@ def phoneCall(min1, min2_10, min11, s):
     return counter
 
 
-if def main():
+def main():
     pass
 
 if __name__ == '__main__':
