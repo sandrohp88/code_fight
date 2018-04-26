@@ -148,33 +148,39 @@ def makeArrayConsecutive2(statues):
 # from the array in order to get a strictly increasing sequence,
 # otherwise return false.
 
-# TODO Unfinished!!!
 def almostIncreasingSequence(sequence):
-    sequence_lenght = len(sequence)
-    if sequence_lenght == 2:
+    if len(sequence) < 3 :
         return True
     if isSorted(sequence[1:]):
         return True
     if isSorted(sequence[:-1]):
         return True
-        
+    
+    indexes = []
     i = 1
-    counter = 0
-    while i <= sequence_lenght - 2 and counter < 2:
-        if sequence[i] >= sequence[i+1] or sequence[i] <= sequence[i - 1]:
-            new_sequence = []
-            new_sequence.extend(sequence[:i])
-            new_sequence.extend(sequence[i+1:])
-            if isSorted(new_sequence):               
-                    sequence.pop(i)
-                    sequence_lenght = len(sequence)
-                    i -= 1        
-                    counter += 1
-            else:
-                counter += 2
+    current_element = sequence[i]
+    while i < len(sequence) - 1 :
+        if current_element >= sequence[i + 1] or current_element <= sequence[i - 1]:
+            indexes.append(i)
+            #current_element = sequence[i + 1]
+        i += 1
+        current_element = sequence[i]   
+    if len(indexes) > 2:
+        return False
+    if len(indexes) == 2 :
+        # Check if removing one of the elements the sequence is ordered
+        new_sequence = sequence[:indexes[0]] + sequence[indexes[0] + 1:]
+        if isSorted(new_sequence):
+            return True
+        else:
+            new_sequence = sequence[:indexes[1]] + sequence[indexes[1] + 1:]
+            return isSorted(new_sequence)
+                
+    else:
+        return len(indexes) == 1 and isSorted(sequence[:indexes[0]] + sequence[indexes[0] + 1:])
+          
+        
             
-        i+=1
-    return counter < 2
 
 def isSorted(sequence):
     previous = sequence[0]
@@ -184,8 +190,72 @@ def isSorted(sequence):
             return False
         previous = current
     return True
-def main():
-    pass
 
+# After they became famous, the CodeBots all decided to move to a new 
+# building and live together. The building is represented by a 
+# rectangular matrix of rooms. Each cell in the matrix contains 
+# an integer that represents the price of the room. Some rooms 
+# are free (their cost is 0), but that's probably because they 
+# are haunted, so all the bots are afraid of them. That is why 
+# any room that is free or is located anywhere below a free room
+# in the same column is not considered suitable for the bots to live in.
+
+# Help the bots calculate the total price of all the rooms that are suitable for them.
+
+# Example
+
+# For
+# matrix = [[0, 1, 1, 2], 
+#           [0, 5, 0, 0], 
+#           [2, 0, 3, 3]]
+# the output should be
+# matrixElementsSum(matrix) = 9.
+
+# Here's the rooms matrix with unsuitable rooms marked with 'x':
+
+# [[x, 1, 1, 2], 
+#  [x, 5, x, x], 
+#  [x, x, x, x]]
+# Thus, the answer is 1 + 5 + 1 + 2 = 9.
+
+# For
+# matrix = [[1, 1, 1, 0], 
+#           [0, 5, 0, 1], 
+#           [2, 1, 3, 10]]
+# the output should be
+# matrixElementsSum(matrix) = 9.
+
+# Here's the rooms matrix with unsuitable rooms marked with 'x':
+
+# [[1, 1, 1, x], 
+#  [x, 5, x, x], 
+#  [x, 1, x, x]]
+# Note that the free room in the first row make the full column unsuitable for bots.
+
+# Thus, the answer is 1 + 1 + 1 + 5 + 1 = 9.
+# 
+def matrixElementsSum(matrix):
+    number_of_rows = len(matrix)
+    number_of_columns = len(matrix[0])
+
+    price = 0
+    for i in range(number_of_columns):
+        j = 0
+        while j < number_of_rows and matrix[j][i] != 0  :
+            price += matrix[j][i]
+            j += 1
+    return price
+    
+
+def main():
+   s =   [1, 2, 1, 2]
+   a = [1]
+   matrix = [[1,1,1], 
+ [2,2,2], 
+ [3,3,3]]
+
+   print(matrixElementsSum(matrix))
+   #print(isSorted(a))
+   #print(almostIncreasingSequence(a))
 if __name__ == '__main__':
     main()
