@@ -136,6 +136,7 @@ def sortByHeight(a):
 # reverseParentheses(s) = "acbde".
 
 def reverseParentheses(s):
+    #
     left_bracket_index = s.rfind('(')    
     right_bracket_index = left_bracket_index
     while  right_bracket_index < len(s) and s[right_bracket_index] != ')':
