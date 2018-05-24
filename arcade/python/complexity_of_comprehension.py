@@ -14,9 +14,9 @@ import string
 #                          [7, 8, 1]]
 
 def createSpiralMatrix(n):
-    dirs = [(-1, 0), (0, -1), (1, 0), (0, 1)]
+    dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)]
     curDir = 0
-    curPos = (n - 1, n - 1)
+    curPos = (0, 0)
     res = [[0]*n for number in range(n)]
 
     for i in range(1, n * n + 1):
@@ -105,12 +105,12 @@ def multiplicationTable(n):
     return [[i*j for i in range(1,n + 1)]  for j in range(1,n + 1)]
 
 def main():
-    # print(createSpiralMatrix(3))
+    print(createSpiralMatrix(3))
     # print(constructShell(3))
     # print(wordPower('hello'))
     # a = [4, 5, 6, 7, 8] 
     # b = [8, 9, 10, 11, 12]
     # print(coolPairs(a,b))
-    print(multiplicationTable(5))
+    # print(multiplicationTable(5))
 if __name__ == '__main__':
     main()

@@ -135,7 +135,7 @@ def secondRightmostZeroBit(n):
 # cases don't matter, so they are omitted. Here, however, it does make a difference.
 
 def swapAdjacentBits(n):
-    return  return ((n & 0b101010101010101010101010101010) >> 1) | ((n & 0b010101010101010101010101010101) << 1)
+    return ((n & 0b101010101010101010101010101010) >> 1) | ((n & 0b010101010101010101010101010101) << 1)
 
 # You're given two integers, n and m. Find position of the 
 # rightmost bit in which they differ in their binary 

@@ -92,20 +92,7 @@ def chessBoardCellColor(cell1, cell2):
 
     col1, row1  = columns[cell1[0]] , int(cell1[1]) - 1
     col2, row2 = columns[cell2[0]] , int(cell2[1]) - 1
-    
-    # # Same row, check alternate columns
-    # if row1 == row2:
-    #     return ((is_even(col1) and is_even(col2)) or (not is_even(col1) and not is_even(col2)))
-           
-    # # Same column, check altenate rows
-    # if col1 == col2:
-    #     return ((is_even(row1) and is_even(row2)) or (not is_even(row1) and not is_even(row2)))
-    # # Same diagonal
-    # if ( (abs(row1 - col1) - abs(row2 - col2)) == 0) :
-    #     return ( (abs(row1 - col1) - abs(row2 - col2)) == 0)
-    # else:
     chess_board = [[1]*8 for x in range(8)]
-
 
     for row in range(0,8):        
         if row % 2 == 0:

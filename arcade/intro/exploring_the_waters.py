@@ -130,7 +130,6 @@ def palindromeRearranging(inputString):
         else:
             character_count[inputString[i] ] = 1
 
-    print(character_count)
     if len(inputString) % 2 == 0:
         for key in character_count.keys():
             if character_count[key] % 2 != 0:

@@ -286,6 +286,7 @@ def main():
     matrix2 = [[True,False,False,True], 
     [False,False,True,False], 
     [True,True,False,True]]
+    
     print(minesweeper(matrix2))
     # image1 = [[7, 4, 0, 1], 
     #          [5, 6, 2, 2], 
