@@ -9,22 +9,25 @@
 
 # For trainingText = "some very repetitive text, very very repetitive text", firstWord = "very", and howManyWords = 10, the output should be predictiveText(trainingText, firstWord, howManyWords) = ["very", "repetitive", "text", "very", "repetitive", "text", "very", "repetitive", "text", "very"].
 import string
+
+
 def predictiveText(trainingText, firstWord, howManyWords):
     # Never Finished!!!
     word_count = dict()
-    trainingText = [word.strip(string.punctuation) for word in trainingText.split()] 
+    trainingText = [word.strip(string.punctuation)
+                    for word in trainingText.split()]
     for word in trainingText:
-        word_count[word] = word_count.get(word,0) + 1
-    ordered_words = sorted(word_count.keys(),key = word_count.get)
+        word_count[word] = word_count.get(word, 0) + 1
+    ordered_words = sorted(word_count.keys(), key=word_count.get)
     if word_count[ordered_words[-2]] == word_count[ordered_words[-1]]:
         i = trainingText.index(ordered_words[-1])
         j = trainingText.index(ordered_words[-2])
         if i > j:
-            ordered_words[-1],ordered_words[-2] = ordered_words[-2],ordered_words[-1]
+            ordered_words[-1], ordered_words[-2] = ordered_words[-2], ordered_words[-1]
 
     result_text = list()
     result_text.append(firstWord)
-   
+
     k = 1
     print(word_count)
     print(ordered_words)
@@ -34,9 +37,9 @@ def predictiveText(trainingText, firstWord, howManyWords):
         if word_count[ordered_words[1]] == word_count[ordered_words[-1]]:
             result_text.append(ordered_words[-1])
         else:
-       
+
             result_text.append(ordered_words[k])
-            if k ==  len(ordered_words) - 1:
+            if k == len(ordered_words) - 1:
                 k = 1
             else:
                 k += 1
@@ -73,6 +76,8 @@ def predictiveText(trainingText, firstWord, howManyWords):
 # [output] array.integer
 
 # An array of numbers where each number appears as infrequently as possible up to the index at which it was selected.
+
+
 def leastAppearance(choices):
    #
     numbers_count = dict()
@@ -86,11 +91,11 @@ def leastAppearance(choices):
                 numbers_count[pair[0]] = 1
                 result_list.append(pair[0])
             elif pair[0] in numbers_count.keys() and pair[1] not in numbers_count.keys():
-                numbers_count[pair[1]] =  1
+                numbers_count[pair[1]] = 1
                 result_list.append(pair[1])
             elif pair[1] in numbers_count.keys() and pair[0] not in numbers_count.keys():
-               numbers_count[pair[0]] =  1
-               result_list.append(pair[0])
+                numbers_count[pair[0]] = 1
+                result_list.append(pair[0])
             else:
                 # both already in the dict
                 if numbers_count[pair[0]] <= numbers_count[pair[1]]:
@@ -99,17 +104,32 @@ def leastAppearance(choices):
                 else:
                     numbers_count[pair[1]] = numbers_count[pair[1]] + 1
                     result_list.append(pair[1])
-        
-    
+
     return result_list
 
+
+def constructList(size):
+    result = []
+    i = 0
+    while size - i != i + 1 and size - i > i and i in range(size):
+        result.append(i + 1)
+        result.append(size - i)
+        i += 1
+
+    if size - i == i + 1:
+        result.append(i + 1)
+    return result
+
+
 def main():
+    print(constructList(7))
+
     # trainingText = "some very repetitive text, very very repetitive text"
     # trainingText = "only three words"
     # firstWord = "words"
     # howManyWords  = 7
     # print(predictiveText(trainingText, firstWord, howManyWords))
-    choices = [[1, 2], [3, 4], [1, 2]]
-    print(leastAppearance(choices))
+    # choices = [[1, 2], [3, 4], [1, 2]]
+    # print(leastAppearance(choices))
 if __name__ == '__main__':
     main()
