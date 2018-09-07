@@ -108,21 +108,7 @@ def leastAppearance(choices):
     return result_list
 
 
-def constructList(size):
-    result = []
-    i = 0
-    while size - i != i + 1 and size - i > i and i in range(size):
-        result.append(i + 1)
-        result.append(size - i)
-        i += 1
-
-    if size - i == i + 1:
-        result.append(i + 1)
-    return result
-
-
 def main():
-    print(constructList(7))
 
     # trainingText = "some very repetitive text, very very repetitive text"
     # trainingText = "only three words"
