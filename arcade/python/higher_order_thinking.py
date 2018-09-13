@@ -1,4 +1,5 @@
 import math
+import functools
 
 
 def tryFunctions(x, functions):
@@ -72,7 +73,7 @@ def simpleComposition(f, g, x):
     return compose(eval(f), eval(g))(x)
 
 
-def compose(functions):
+def _compose(functions):
     return functools.reduce(lambda f, g: lambda x: f(g(x)), functions, lambda x: x)
 
 
@@ -86,7 +87,7 @@ def functionsComposition(functions, x):
     functionsComposition(functions, x) = 1.
     abs(math.sin(3 * 3.1415 / 2)) = abs(sin(4.71225)) ≈ abs(-1) = 1.
     '''
-    return compose(map(eval, functions))(x)
+    return _compose(map(eval, functions))(x)
 
 
 def mergingVines(vines, n):
