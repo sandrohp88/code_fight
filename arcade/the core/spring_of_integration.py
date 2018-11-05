@@ -40,7 +40,7 @@ def runnersMeetings(startPosition, speed):
     if met > meeting:
         meeting = met
     startPosition = [s * 60 for s in startPosition]
-    
+
     for _ in range(59940):
         for i in range(len(startPosition)):
             startPosition[i] += speed[i]
@@ -52,10 +52,48 @@ def runnersMeetings(startPosition, speed):
     return -1 if meeting == 0 else meeting
 
 
+def christmasTree(levelNum, levelHeight):
+    tree = list()
+    # line  horizontal group of asterisks
+    line = None
+
+    # create the crown
+    crown = ' '*(levelNum + levelHeight) + '*'
+    tree.append(crown)
+    tree.append(crown)
+    crown = ' '*(levelNum + levelHeight - 1) + '***'
+    tree.append(crown)
+    first_line_asterisk = 5
+
+    for ln in range(levelNum):
+        num = levelNum - ln
+        num_asterisk = first_line_asterisk
+        # level collection of levelHeight lines stacked one on top of the other.
+        level = list()
+        line = ""
+        for i in range(levelHeight):
+            line = ' '*(num + levelHeight - i - 2) + (num_asterisk) * "*"
+            num_asterisk += 2
+            level.append(line)
+        tree += level
+        first_line_asterisk += 2
+    # foot
+    foot = (levelHeight + 1) * \
+        '*' if levelHeight % 2 == 0 else levelHeight*'*'
+    foot = ((len(line) - len(foot))//2)*' ' + foot
+    for i in range(levelNum):
+        tree.append(foot)
+
+    return tree
+
+
 def main():
-    startPosition = [1, 1000]
-    speed = [23, 22]
-    print(runnersMeetings(startPosition, speed))
+    levelNum = 4
+    levelHeight = 8
+    print(christmasTree(levelNum, levelHeight))
+    # startPosition = [1, 1000]
+    # speed = [23, 22]
+    # print(runnersMeetings(startPosition, speed))
     # inputString = "dht skq dkg"
     # l = 4
     # r = 10
